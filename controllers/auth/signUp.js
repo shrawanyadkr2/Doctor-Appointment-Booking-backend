@@ -3,27 +3,6 @@ const jwt = require("jsonwebtoken");
 const PatientModel = require("../../models/patients ");
 const DoctorModel = require ("../../models/Doctor")
 
-
-
-const transporter = nodemailer.createTransport({
-  service: "Gmail", // or your SMTP host/port
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
-async function sendWelcomeEmail(to, name, role) {
-  await transporter.sendMail({
-    from: `"DOCBOOK" <${process.env.EMAIL_USER}>`,
-    to,
-    subject: `Welcome to DOCBOOK as a ${role}`,
-    html: `<h2>Hello ${name},</h2>
-           <p>Thanks for signing up as a ${role}. Your account is now active.</p>
-           <p>– DOCBOOK Team</p>`,
-  });
-}
-
 // Register Patient
 const patientSignup = async (req, res) => {
   try {
@@ -48,10 +27,8 @@ const patientSignup = async (req, res) => {
     });
 
     await newPatient.save();
-    await sendWelcomeEmail(email, name, "Doctor");
-
-    res.status(201).json({
-      message: "patient Registered Successfully. Please login.",
+    res.status(200).json({
+      message: "Patient Registered Sucessfully Please Login",
       success: true,
     });
   } catch (err) {
@@ -88,20 +65,14 @@ const docSignUp = async (req, res) => {
 
     await newDoctor.save();
 
-    await sendWelcomeEmail(email, name, "Patient");
-
-    res.status(200).json({
-      message: "Doctor Registered Successfully. Please Login",
+    res.status(201).json({
+      message: "Doctor Registered Successfully. Please login.",
       success: true,
     });
-
-
   } catch (err) {
     res.status(500).json({ message: "Internal Server Error", err });
   }
 };
-
-
 
 module.exports = {
   patientSignup,
