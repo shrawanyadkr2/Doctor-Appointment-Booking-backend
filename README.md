@@ -2,6 +2,8 @@
 
 # 🩺 DOCBOOK — Doctor Appointment Backend
 
+![Architecture Diagram](BackendFlow.png)
+
 This repository contains the backend API for DOCBOOK, a doctor appointment web application. The API is built with Node.js, Express, and MongoDB (Mongoose) and exposes endpoints used by the frontend to register users, manage doctors' availability, and create/cancel appointments.
 
 This README focuses on the backend project: setup, folder structure and a clear explanation of what each router is responsible for.
