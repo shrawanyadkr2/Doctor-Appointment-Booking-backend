@@ -32,7 +32,9 @@ const patientSignup = async (req, res) => {
       success: true,
     });
   } catch (err) {
+    console.log(err)
     res.status(404).json({ message: "Internal Server Error", err });
+    
   }
 };
 
